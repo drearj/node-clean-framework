@@ -1,6 +1,7 @@
 services:
   app:
     container_name: node-clean-framework
+    image: node-clean-framework-app
     build: .
     volumes:
       - .:/app

@@ -1,20 +1,10 @@
-interface Dependency {
-    [key: string]: any;
-}
+import { createContainer, asClass } from "awilix";
+import Logger from "src/services/logger";
 
-class Container {
-    private dependencies: Dependency = {};
+const container = createContainer();
 
-    register(name: string, dependency: any) {
-        this.dependencies[name] = dependency;
-    }
+container.register({
+    logger: asClass(Logger).scoped(),
+});
 
-    resolve(name: string) {
-        if (!this.dependencies[name]) {
-            throw new Error(`Dependency ${name} not found`);
-        }
-        return this.dependencies[name];
-    }
-}
-
-export const container = new Container();
+export { container };
